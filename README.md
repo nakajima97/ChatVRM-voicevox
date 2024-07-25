@@ -8,6 +8,8 @@ https://github.com/pixiv/ChatVRM
 ## 変更点
 - TTSに使うツールをvoicevox nemoに変更
 - ChatGPTをサーバサイドで実行するようにした
+- ライブラリの更新
+  - openaiを3系から4系に変更
 
 ## 実行
 ローカル環境で実行する場合はこのリポジトリをクローンするか、ダウンロードしてください。
