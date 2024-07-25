@@ -2,26 +2,17 @@ import { Message } from "../messages/messages";
 
 export async function getChatResponseStream(
   messages: Message[],
-  apiKey: string
 ) {
-  if (!apiKey) {
-    throw new Error("Invalid API Key");
-  }
-
   const headers: Record<string, string> = {
     "Content-Type": "application/json",
-    Authorization: `Bearer ${apiKey}`,
   };
-  const res = await fetch("https://api.openai.com/v1/chat/completions", {
+  const res = await fetch("/api/chat", {
     headers: headers,
     method: "POST",
     body: JSON.stringify({
-      model: "gpt-3.5-turbo",
       messages: messages,
-      stream: true,
-      max_tokens: 200,
     }),
-  });
+  })
 
   const reader = res.body?.getReader();
   if (res.status !== 200 || !reader) {

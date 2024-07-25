@@ -1,38 +1,42 @@
-import { Configuration, OpenAIApi } from "openai";
-
 import type { NextApiRequest, NextApiResponse } from "next";
+import OpenAI from "openai";
 
-type Data = {
-  message: string;
-};
+const configuration = {
+  apiKey: process.env.OPEN_AI_API_KEY,
+}
+
+const openai = new OpenAI(configuration);
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: NextApiResponse
 ) {
-  const apiKey = req.body.apiKey || process.env.OPEN_AI_KEY;
+  const messages = req.body.messages;
 
-  if (!apiKey) {
-    res
-      .status(400)
-      .json({ message: "APIキーが間違っているか、設定されていません。" });
+  const completion = await openai.chat.completions.create({
+    messages,
+    model: "gpt-4o-mini",
+    stream: true
+  });
 
-    return;
+  const reader = completion.toReadableStream().getReader();
+  const decoder = new TextDecoder('utf-8');
+
+  // SSTのレスポンスを返す
+  res.setHeader("Content-Type", "text/event-stream");
+  res.setHeader("Cache-Control", "no-cache");
+  res.setHeader("Connection", "keep-alive");
+  res.writeHead(200)
+
+  // ChatGPTのレスポンスをクライアントに送信
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) {
+      break;
+    }
+    const decodedValue = decoder.decode(value);
+    res.write(`data: ${decodedValue}\n\n`);
   }
 
-  const configuration = new Configuration({
-    apiKey: apiKey,
-  });
-
-  const openai = new OpenAIApi(configuration);
-
-  const { data } = await openai.createChatCompletion({
-    model: "gpt-3.5-turbo",
-    messages: req.body.messages,
-  });
-
-  const [aiRes] = data.choices;
-  const message = aiRes.message?.content || "エラーが発生しました";
-
-  res.status(200).json({ message: message });
+  res.end();
 }
