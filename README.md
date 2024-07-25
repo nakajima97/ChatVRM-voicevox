@@ -1,33 +1,13 @@
 # ChatVRM
 
-ChatVRMは、技術共有およびデモンストレーションを主目的としたプロジェクトです。
+以下リポジトリをフォークしたリポジトリです。  
+https://github.com/pixiv/ChatVRM
 
-本レポジトリは、2024-07-18時点のコードを持ってアーカイブされました。
-今後、ChatVRMに対して変更を加えたい場合、フォークを行って開発いただけますと幸いです。
+変更点は後述。
 
----
-
-ChatVRMはブラウザで簡単に3Dキャラクターと会話ができるデモアプリケーションです。
-
-VRMファイルをインポートしてキャラクターに合わせた声の調整や、感情表現を含んだ返答文の生成などを行うことができます。
-
-ChatVRMの各機能は主に以下の技術を使用しています。
-
-- ユーザーの音声の認識
-    - [Web Speech API(SpeechRecognition)](https://developer.mozilla.org/ja/docs/Web/API/SpeechRecognition)
-- 返答文の生成
-    - [ChatGPT API](https://platform.openai.com/docs/api-reference/chat)
-- 読み上げ音声の生成
-    - [VOICEVOX NEMO](https://voicevox.hiroshiba.jp/nemo/)
-- 3Dキャラクターの表示
-    - [@pixiv/three-vrm](https://github.com/pixiv/three-vrm)
-
-
-## デモ
-
-Glitchでデモを公開しています。
-
-[https://chatvrm.glitch.me](https://chatvrm.glitch.me)
+## 変更点
+- TTSに使うツールをvoicevox nemoに変更
+- ChatGPTをサーバサイドで実行するようにした
 
 ## 実行
 ローカル環境で実行する場合はこのリポジトリをクローンするか、ダウンロードしてください。
