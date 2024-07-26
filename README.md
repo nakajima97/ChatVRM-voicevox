@@ -12,6 +12,10 @@ https://github.com/pixiv/ChatVRM
   - openaiを3系から4系に変更
 
 ## 実行
+TTSにはVOICEVOX NEMOが必要です。  
+以下に従ってローカルにサーバを構築してください。  
+https://github.com/VOICEVOX/voicevox_nemo_engine
+
 ローカル環境で実行する場合はこのリポジトリをクローンするか、ダウンロードしてください。
 
 ```bash
@@ -46,5 +50,6 @@ ChatGPT APIの仕様や利用規約については以下のリンクや公式サ
 
 
 ## VOICEVOX NEMO
-サーバ構築方法は以下リポジトリを参照  
-https://github.com/VOICEVOX/voicevox_nemo_engine
+VOICEVOX NEMOは音声の生成に利用しています。  
+VOICEVOX NEMOの詳細・利用規約は公式サイトをご確認ください。  
+https://voicevox.hiroshiba.jp/nemo/
