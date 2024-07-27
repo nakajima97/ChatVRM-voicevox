@@ -50,6 +50,6 @@ ChatGPT APIの仕様や利用規約については以下のリンクや公式サ
 
 
 ## VOICEVOX NEMO
-VOICEVOX NEMOは音声の生成に利用しています。  
+VOICEVOX NEMOを音声の生成に利用しています。  
 VOICEVOX NEMOの詳細・利用規約は公式サイトをご確認ください。  
 https://voicevox.hiroshiba.jp/nemo/
